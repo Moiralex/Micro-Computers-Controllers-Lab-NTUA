@@ -1,0 +1,43 @@
+LXI B,03E8H ;1000 dekadiko epi 1ms
+INIT: LDA 2000H
+ANI 0FH ;Apomonwsh 4LSB
+MOV E,A ;kai apothikeush tous ston E
+MVI A,00H
+
+UP: CMA ;Anastrofh (led antistrofhs logikhs)
+STA 3000H
+CMA
+MOV D,A ; Apothikeush xronometrou
+
+STOP1: LDA 2000H
+RAL
+JNC STOP1 ;An to MSB den einai sto 1 kolla
+
+MOV A,D ; An to xronometro eftase sthn timh pou ypodeiknyoyn
+CMP E ; ta 4 LSB tvn diakoptwn xekina thn antistrofh metrhsh
+JZ DOWN
+
+CALL DELB ; Alliws perimene 1 sec kai auxhse ton metrhth
+INR A ; twn deuteroleptwn kata 1
+JMP UP
+
+DOWN: CMA ;Gia thn katw metrhsh apeikonise pali thn timh tou
+STA 3000H ; xronometrou
+CMA
+MOV D,A
+
+STOP2: LDA 2000H ;Elegxe an MSB sto 1 alliws stamata
+RAL
+JNC STOP2
+
+MOV A,D ; Elegxe an mhdenise to xronometro wste na arxisei pali
+CPI 00H ; metrhsh anw
+JZ INIT
+
+CALL DELB ; Alliws perimene 1 sec kai meiwse ton metrhth
+DCR A ; twn deuteroleptwn kata 1
+JMP DOWN
+
+END
+
+

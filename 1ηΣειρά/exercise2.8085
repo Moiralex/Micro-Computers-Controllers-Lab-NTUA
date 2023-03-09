@@ -1,0 +1,49 @@
+IN 10H ; Xekleidwma mnhmhs gia apothikeush timwn gia to 7-segment
+MVI A,10H ;KENO STA 3 MSB
+STA 0B05H
+STA 0B04H
+STA 0B03H
+START: LXI D,0B00H ;Sto zeugos DE h dieuthynsh apo thn opoia
+; xekinoun oi theseis mnhmhs gia thn STDM. Thn topothetoume sto 
+; zeugos se kathe loop giati h STDM ephrreazei thn timh sto zeugos
+; DE
+
+CALL KIND ;Anagnwsh apo plhktrologio
+RAL
+RAL 
+RAL 
+RAL ; Pollaplasiasmos arithmou pou diavasthke epi 16
+MOV B,A ; Apothikeush ston B
+CALL KIND ; Anagnwsh epomenou arithmou
+ADD B ; Athroisma 16x+y ston A
+
+MVI C,00H ; Ston C oi ekatontades
+
+EKATONTADES: SUI 64H ; Diadoxikes afaireseis tou 100
+INR C ; kai metrhsh ekatontadwn
+JNC EKATONTADES ; mexri na ginei arnhtikos
+DCR C
+ADI 64H ; Diorthwsh
+
+MOV H,A ;SAVE PROSWRINA TON A pou periexei dekades kai monades
+MOV A,C ;KANW MOVE EKATONTADES APO C STON A
+STA 0B02H ;Apothikeusi tous sth thesh mnhmhs - 3o pshfio 7-segment
+MOV A,H
+
+MVI C,00H ; Ston C oi dekades
+DEKADES: SUI 0AH ; Allepallhles afaireseis tou 10
+INR C ; kai metrhsh dekadwn
+JNC DEKADES ; ews otou o arithmos na ginei arnhtikos
+DCR C ; diorthwnoume 
+ADI 0AH ; Twra o C exei tis dekades kai o A tis monades
+
+STA 0B00H ; Topothetoume stis katallhles theseis mnhmhs gia STDM
+MOV A,C 
+STA 0B01H
+
+CALL STDM
+CALL DCD ; Apeikonish sto 7-segment display
+JMP START ;LOOP sthn arxh wste na mporoun na dwthoun neoi arithmoi
+
+END
+

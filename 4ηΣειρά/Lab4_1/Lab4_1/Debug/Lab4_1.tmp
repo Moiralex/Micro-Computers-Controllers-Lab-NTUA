@@ -1,0 +1,60 @@
+<ASSEMBLER_INFO>
+ <VERSION>2.2.8</VERSION>
+ <DEVICE>"ATmega16"</DEVICE>
+ <WORKING_DIR>C:\Micro\Lab4_1\Lab4_1\Debug</WORKING_DIR>
+ <INCLUDE_PATH>
+  <DIR>E:/AVR Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc</DIR>
+  <DIR>E:\AVR Studio\7.0\toolchain\avr8\avrassembler\Include</DIR>
+  <DIR></DIR>
+ </INCLUDE_PATH>
+ <SOURCE_FILE>C:\Micro\Lab4_1\Lab4_1\main.asm</SOURCE_FILE>
+ <INCLUDED_FILES>
+  <FILE>E:/AVR Studio\7.0\Packs\atmel\ATmega_DFP\1.6.364\avrasm\inc\m16def.inc</FILE>
+ </INCLUDED_FILES>
+ <OBJECT_FILES>
+  <FILE>C:\Micro\Lab4_1\Lab4_1\Debug\Lab4_1.obj</FILE>
+ </OBJECT_FILES>
+ <HEX_FILES>
+  <FILE>Lab4_1.hex</FILE>
+ </HEX_FILES>
+ <OUTPUT_FILES>
+  <FILE>Lab4_1.map</FILE>
+  <FILE>Lab4_1.lss</FILE>
+ </OUTPUT_FILES>
+ <LABELS>
+  <_tmp_><FILE>C:\Micro\Lab4_1\Lab4_1\main.asm</FILE><LINE>2</LINE></_tmp_>
+  <main><FILE>C:\Micro\Lab4_1\Lab4_1\main.asm</FILE><LINE>340</LINE></main>
+  <ISR_TIMER1_OVF><FILE>C:\Micro\Lab4_1\Lab4_1\main.asm</FILE><LINE>472</LINE></ISR_TIMER1_OVF>
+  <ADC_INT><FILE>C:\Micro\Lab4_1\Lab4_1\main.asm</FILE><LINE>530</LINE></ADC_INT>
+  <ADC_init><FILE>C:\Micro\Lab4_1\Lab4_1\main.asm</FILE><LINE>12</LINE></ADC_init>
+  <wait_msec><FILE>C:\Micro\Lab4_1\Lab4_1\main.asm</FILE><LINE>23</LINE></wait_msec>
+  <wait_usec><FILE>C:\Micro\Lab4_1\Lab4_1\main.asm</FILE><LINE>35</LINE></wait_usec>
+  <scan_row_sim><FILE>C:\Micro\Lab4_1\Lab4_1\main.asm</FILE><LINE>44</LINE></scan_row_sim>
+  <scan_keypad_sim><FILE>C:\Micro\Lab4_1\Lab4_1\main.asm</FILE><LINE>59</LINE></scan_keypad_sim>
+  <scan_keypad_rising_edge_sim><FILE>C:\Micro\Lab4_1\Lab4_1\main.asm</FILE><LINE>83</LINE></scan_keypad_rising_edge_sim>
+  <keypad_to_ascii_sim><FILE>C:\Micro\Lab4_1\Lab4_1\main.asm</FILE><LINE>115</LINE></keypad_to_ascii_sim>
+  <return_ascii><FILE>C:\Micro\Lab4_1\Lab4_1\main.asm</FILE><LINE>169</LINE></return_ascii>
+  <write_2_nibbles_sim><FILE>C:\Micro\Lab4_1\Lab4_1\main.asm</FILE><LINE>174</LINE></write_2_nibbles_sim>
+  <lcd_data_sim><FILE>C:\Micro\Lab4_1\Lab4_1\main.asm</FILE><LINE>206</LINE></lcd_data_sim>
+  <lcd_command_sim><FILE>C:\Micro\Lab4_1\Lab4_1\main.asm</FILE><LINE>218</LINE></lcd_command_sim>
+  <lcd_init_sim><FILE>C:\Micro\Lab4_1\Lab4_1\main.asm</FILE><LINE>230</LINE></lcd_init_sim>
+  <print_clear><FILE>C:\Micro\Lab4_1\Lab4_1\main.asm</FILE><LINE>296</LINE></print_clear>
+  <print_gas_detected><FILE>C:\Micro\Lab4_1\Lab4_1\main.asm</FILE><LINE>311</LINE></print_gas_detected>
+  <digit1><FILE>C:\Micro\Lab4_1\Lab4_1\main.asm</FILE><LINE>377</LINE></digit1>
+  <digit2><FILE>C:\Micro\Lab4_1\Lab4_1\main.asm</FILE><LINE>385</LINE></digit2>
+  <wrong><FILE>C:\Micro\Lab4_1\Lab4_1\main.asm</FILE><LINE>443</LINE></wrong>
+  <correct><FILE>C:\Micro\Lab4_1\Lab4_1\main.asm</FILE><LINE>398</LINE></correct>
+  <loop1><FILE>C:\Micro\Lab4_1\Lab4_1\main.asm</FILE><LINE>426</LINE></loop1>
+  <outerloop><FILE>C:\Micro\Lab4_1\Lab4_1\main.asm</FILE><LINE>445</LINE></outerloop>
+  <inner1><FILE>C:\Micro\Lab4_1\Lab4_1\main.asm</FILE><LINE>451</LINE></inner1>
+  <inner2><FILE>C:\Micro\Lab4_1\Lab4_1\main.asm</FILE><LINE>461</LINE></inner2>
+  <read_adc><FILE>C:\Micro\Lab4_1\Lab4_1\main.asm</FILE><LINE>525</LINE></read_adc>
+  <gas><FILE>C:\Micro\Lab4_1\Lab4_1\main.asm</FILE><LINE>493</LINE></gas>
+  <no_gas><FILE>C:\Micro\Lab4_1\Lab4_1\main.asm</FILE><LINE>480</LINE></no_gas>
+  <skip_print_clear><FILE>C:\Micro\Lab4_1\Lab4_1\main.asm</FILE><LINE>484</LINE></skip_print_clear>
+  <skip_print_gas_detected><FILE>C:\Micro\Lab4_1\Lab4_1\main.asm</FILE><LINE>497</LINE></skip_print_gas_detected>
+  <blink_off><FILE>C:\Micro\Lab4_1\Lab4_1\main.asm</FILE><LINE>514</LINE></blink_off>
+  <blink_on><FILE>C:\Micro\Lab4_1\Lab4_1\main.asm</FILE><LINE>503</LINE></blink_on>
+  <go_back><FILE>C:\Micro\Lab4_1\Lab4_1\main.asm</FILE><LINE>566</LINE></go_back>
+ </LABELS>
+</ASSEMBLER_INFO>

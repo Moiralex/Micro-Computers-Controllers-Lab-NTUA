@@ -1,0 +1,1308 @@
+
+Lab4_2.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         000005ec  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000002  00800060  000005ec  00000680  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          0000000c  00800062  00800062  00000682  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  00000682  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000006b4  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000050  00000000  00000000  000006f0  2**3
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   00000851  00000000  00000000  00000740  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 00000601  00000000  00000000  00000f91  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   00000b50  00000000  00000000  00001592  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  0000008c  00000000  00000000  000020e4  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    000003ab  00000000  00000000  00002170  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    00000434  00000000  00000000  0000251b  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000038  00000000  00000000  0000294f  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   8:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+   c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  10:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  14:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  18:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  1c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  20:	0c 94 83 01 	jmp	0x306	; 0x306 <__vector_8>
+  24:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  28:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  2c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  30:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  34:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  38:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  3c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  40:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  44:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  48:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  4c:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+  50:	0c 94 3c 00 	jmp	0x78	; 0x78 <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d4 e0       	ldi	r29, 0x04	; 4
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_clear_bss>:
+  60:	20 e0       	ldi	r18, 0x00	; 0
+  62:	a2 e6       	ldi	r26, 0x62	; 98
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	01 c0       	rjmp	.+2      	; 0x6a <.do_clear_bss_start>
+
+00000068 <.do_clear_bss_loop>:
+  68:	1d 92       	st	X+, r1
+
+0000006a <.do_clear_bss_start>:
+  6a:	ae 36       	cpi	r26, 0x6E	; 110
+  6c:	b2 07       	cpc	r27, r18
+  6e:	e1 f7       	brne	.-8      	; 0x68 <.do_clear_bss_loop>
+  70:	0e 94 6c 02 	call	0x4d8	; 0x4d8 <main>
+  74:	0c 94 f4 02 	jmp	0x5e8	; 0x5e8 <_exit>
+
+00000078 <__bad_interrupt>:
+  78:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+0000007c <scan_keypad_rising_edge_sim>:
+	_tmp_: .byte 2
+
+	.TEXT
+	.global scan_keypad_rising_edge_sim
+	scan_keypad_rising_edge_sim:
+	push r22 ; αποθήκευσε τους καταχωρητές r23:r22 και τους
+  7c:	6f 93       	push	r22
+	push r23 ; r26:r27 γιατι τους αλλάζουμε μέσα στην ρουτίνα
+  7e:	7f 93       	push	r23
+	push r26
+  80:	af 93       	push	r26
+	push r27
+  82:	bf 93       	push	r27
+	rcall scan_keypad_sim ; έλεγξε το πληκτρολόγιο για πιεσμένους διακόπτες
+  84:	b6 d0       	rcall	.+364    	; 0x1f2 <scan_keypad_sim>
+	push r24 ; και αποθήκευσε το αποτέλεσμα
+  86:	8f 93       	push	r24
+	push r25
+  88:	9f 93       	push	r25
+	ldi r24 ,15 ; καθυστέρησε 15 ms (τυπικές τιμές 10-20 msec που καθορίζεται από τον
+  8a:	8f e0       	ldi	r24, 0x0F	; 15
+	ldi r25 ,0 ; κατασκευαστή του πληκτρολογίου – χρονοδιάρκεια σπινθηρισμών)
+  8c:	90 e0       	ldi	r25, 0x00	; 0
+	rcall wait_msec
+  8e:	93 d0       	rcall	.+294    	; 0x1b6 <wait_msec>
+	rcall scan_keypad_sim ; έλεγξε το πληκτρολόγιο ξανά και απόρριψε
+  90:	b0 d0       	rcall	.+352    	; 0x1f2 <scan_keypad_sim>
+	pop r23 ; όσα πλήκτρα εμφανίζουν σπινθηρισμό
+  92:	7f 91       	pop	r23
+	pop r22
+  94:	6f 91       	pop	r22
+	and r24 ,r22
+  96:	86 23       	and	r24, r22
+	and r25 ,r23
+  98:	97 23       	and	r25, r23
+	ldi r26 ,lo8(_tmp_) ; φόρτωσε την κατάσταση των διακοπτών στην
+  9a:	a0 e6       	ldi	r26, 0x60	; 96
+	ldi r27 ,hi8(_tmp_) ; προηγούμενη κλήση της ρουτίνας στους r27:r26
+  9c:	b0 e0       	ldi	r27, 0x00	; 0
+	ld r23 ,X+
+  9e:	7d 91       	ld	r23, X+
+	ld r22 ,X
+  a0:	6c 91       	ld	r22, X
+	st X ,r24 ; αποθήκευσε στη RAM τη νέα κατάσταση
+  a2:	8c 93       	st	X, r24
+	st -X ,r25 ; των διακοπτών
+  a4:	9e 93       	st	-X, r25
+	com r23
+  a6:	70 95       	com	r23
+	com r22 ; βρες τους διακόπτες που έχουν «μόλις» πατηθεί
+  a8:	60 95       	com	r22
+	and r24 ,r22
+  aa:	86 23       	and	r24, r22
+	and r25 ,r23
+  ac:	97 23       	and	r25, r23
+	pop r27 ; επανάφερε τους καταχωρητές r27:r26
+  ae:	bf 91       	pop	r27
+	pop r26 ; και r23:r22
+  b0:	af 91       	pop	r26
+	pop r23
+  b2:	7f 91       	pop	r23
+	pop r22
+  b4:	6f 91       	pop	r22
+	ret
+  b6:	08 95       	ret
+
+000000b8 <initialize_variable>:
+	
+	.global initialize_variable
+	initialize_variable:
+	ldi r24, 0xFF
+  b8:	8f ef       	ldi	r24, 0xFF	; 255
+	sts _tmp_, r24 ; initialize _tmp_ to 0xFF
+  ba:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__DATA_REGION_ORIGIN__>
+	ret
+  be:	08 95       	ret
+
+000000c0 <lcd_init_sim>:
+
+	.global lcd_init_sim
+	lcd_init_sim:
+	push r24 ; αποθήκευσε τους καταχωρητές r25:r24 γιατί τους
+  c0:	8f 93       	push	r24
+	push r25 ; αλλάζουμε μέσα στη ρουτίνα
+  c2:	9f 93       	push	r25
+
+	ldi r24, 40 ; Όταν ο ελεγκτής της lcd τροφοδοτείται με
+  c4:	88 e2       	ldi	r24, 0x28	; 40
+	ldi r25, 0 ; ρεύμα εκτελεί την δική του αρχικοποίηση.
+  c6:	90 e0       	ldi	r25, 0x00	; 0
+	rcall wait_msec ; Αναμονή 40 msec μέχρι αυτή να ολοκληρωθεί.
+  c8:	76 d0       	rcall	.+236    	; 0x1b6 <wait_msec>
+	ldi r24, 0x30 ; εντολή μετάβασης σε 8 bit mode
+  ca:	80 e3       	ldi	r24, 0x30	; 48
+	out PORTD, r24 ; επειδή δεν μπορούμε να είμαστε βέβαιοι
+  cc:	82 bb       	out	0x12, r24	; 18
+	sbi PORTD, PD3 ; για τη διαμόρφωση εισόδου του ελεγκτή
+  ce:	93 9a       	sbi	0x12, 3	; 18
+	cbi PORTD, PD3 ; της οθόνης, η εντολή αποστέλλεται δύο φορές
+  d0:	93 98       	cbi	0x12, 3	; 18
+	ldi r24, 39
+  d2:	87 e2       	ldi	r24, 0x27	; 39
+	ldi r25, 0 ; εάν ο ελεγκτής της οθόνης βρίσκεται σε 8-bit mode
+  d4:	90 e0       	ldi	r25, 0x00	; 0
+	rcall wait_usec ; δεν θα συμβεί τίποτα, αλλά αν ο ελεγκτής έχει διαμόρφωση
+  d6:	79 d0       	rcall	.+242    	; 0x1ca <wait_usec>
+	 ; εισόδου 4 bit θα μεταβεί σε διαμόρφωση 8 bit
+	push r24 ; τμήμα κώδικα που προστίθεται για τη σωστή
+  d8:	8f 93       	push	r24
+	push r25 ; λειτουργία του προγραμματος απομακρυσμένης
+  da:	9f 93       	push	r25
+	ldi r24,lo8(1000) ; πρόσβασης
+  dc:	88 ee       	ldi	r24, 0xE8	; 232
+	ldi r25,hi8(1000)
+  de:	93 e0       	ldi	r25, 0x03	; 3
+	rcall wait_usec
+  e0:	74 d0       	rcall	.+232    	; 0x1ca <wait_usec>
+	pop r25
+  e2:	9f 91       	pop	r25
+	pop r24 ; τέλος τμήμα κώδικα
+  e4:	8f 91       	pop	r24
+	ldi r24, 0x30
+  e6:	80 e3       	ldi	r24, 0x30	; 48
+	out PORTD, r24
+  e8:	82 bb       	out	0x12, r24	; 18
+	sbi PORTD, PD3
+  ea:	93 9a       	sbi	0x12, 3	; 18
+	cbi PORTD, PD3
+  ec:	93 98       	cbi	0x12, 3	; 18
+	ldi r24,39
+  ee:	87 e2       	ldi	r24, 0x27	; 39
+	ldi r25,0
+  f0:	90 e0       	ldi	r25, 0x00	; 0
+	rcall wait_usec 
+  f2:	6b d0       	rcall	.+214    	; 0x1ca <wait_usec>
+	push r24 ; τμήμα κώδικα που προστίθεται για τη σωστή
+  f4:	8f 93       	push	r24
+	push r25 ; λειτουργία του προγραμματος απομακρυσμένης
+  f6:	9f 93       	push	r25
+	ldi r24 ,lo8(1000) ; πρόσβασης
+  f8:	88 ee       	ldi	r24, 0xE8	; 232
+	ldi r25 ,hi8(1000)
+  fa:	93 e0       	ldi	r25, 0x03	; 3
+	rcall wait_usec
+  fc:	66 d0       	rcall	.+204    	; 0x1ca <wait_usec>
+	pop r25
+  fe:	9f 91       	pop	r25
+	pop r24 ; τέλος τμήμα κώδικα
+ 100:	8f 91       	pop	r24
+	ldi r24,0x20 ; αλλαγή σε 4-bit mode
+ 102:	80 e2       	ldi	r24, 0x20	; 32
+	out PORTD, r24
+ 104:	82 bb       	out	0x12, r24	; 18
+	sbi PORTD, PD3
+ 106:	93 9a       	sbi	0x12, 3	; 18
+	cbi PORTD, PD3
+ 108:	93 98       	cbi	0x12, 3	; 18
+	ldi r24,39
+ 10a:	87 e2       	ldi	r24, 0x27	; 39
+	ldi r25,0
+ 10c:	90 e0       	ldi	r25, 0x00	; 0
+	rcall wait_usec
+ 10e:	5d d0       	rcall	.+186    	; 0x1ca <wait_usec>
+	push r24 ; τμήμα κώδικα που προστίθεται για τη σωστή
+ 110:	8f 93       	push	r24
+	push r25 ; λειτουργία του προγραμματος απομακρυσμένης
+ 112:	9f 93       	push	r25
+	ldi r24 ,lo8(1000) ; πρόσβασης
+ 114:	88 ee       	ldi	r24, 0xE8	; 232
+	ldi r25 ,hi8(1000)
+ 116:	93 e0       	ldi	r25, 0x03	; 3
+	rcall wait_usec
+ 118:	58 d0       	rcall	.+176    	; 0x1ca <wait_usec>
+	pop r25
+ 11a:	9f 91       	pop	r25
+	pop r24 ; τέλος τμήμα κώδικα
+ 11c:	8f 91       	pop	r24
+	ldi r24,0x28 ; επιλογή χαρακτήρων μεγέθους 5x8 κουκίδων
+ 11e:	88 e2       	ldi	r24, 0x28	; 40
+	rcall lcd_command_sim ; και εμφάνιση δύο γραμμών στην οθόνη
+ 120:	a6 d0       	rcall	.+332    	; 0x26e <lcd_command_sim>
+	ldi r24,0x0c ; ενεργοποίηση της οθόνης, απόκρυψη του κέρσορα
+ 122:	8c e0       	ldi	r24, 0x0C	; 12
+	rcall lcd_command_sim
+ 124:	a4 d0       	rcall	.+328    	; 0x26e <lcd_command_sim>
+	ldi r24,0x01 ; καθαρισμός της οθόνης
+ 126:	81 e0       	ldi	r24, 0x01	; 1
+	rcall lcd_command_sim
+ 128:	a2 d0       	rcall	.+324    	; 0x26e <lcd_command_sim>
+	ldi r24, lo8(1530)
+ 12a:	8a ef       	ldi	r24, 0xFA	; 250
+	ldi r25, hi8(1530)
+ 12c:	95 e0       	ldi	r25, 0x05	; 5
+	rcall wait_usec
+ 12e:	4d d0       	rcall	.+154    	; 0x1ca <wait_usec>
+	ldi r24 ,0x06 ; ενεργοποίηση αυτόματης αύξησης κατά 1 της διεύθυνσης
+ 130:	86 e0       	ldi	r24, 0x06	; 6
+	rcall lcd_command_sim ; που είναι αποθηκευμένη στον μετρητή διευθύνσεων και
+ 132:	9d d0       	rcall	.+314    	; 0x26e <lcd_command_sim>
+	 ; απενεργοποίηση της ολίσθησης ολόκληρης της οθόνης
+	pop r25 ; επανάφερε τους καταχωρητές r25:r24
+ 134:	9f 91       	pop	r25
+	pop r24
+ 136:	8f 91       	pop	r24
+	ret
+ 138:	08 95       	ret
+
+0000013a <clear_lcd>:
+
+	.global clear_lcd
+	clear_lcd:
+	push r24
+ 13a:	8f 93       	push	r24
+	ldi r24,0x01 ;clear the lcd
+ 13c:	81 e0       	ldi	r24, 0x01	; 1
+	rcall lcd_command_sim
+ 13e:	97 d0       	rcall	.+302    	; 0x26e <lcd_command_sim>
+	pop r24
+ 140:	8f 91       	pop	r24
+	ret
+ 142:	08 95       	ret
+
+00000144 <print_gas_detected>:
+
+	.global print_gas_detected
+	print_gas_detected:
+	push r24
+ 144:	8f 93       	push	r24
+	ldi r24, 'G'
+ 146:	87 e4       	ldi	r24, 0x47	; 71
+	rcall lcd_data_sim
+ 148:	88 d0       	rcall	.+272    	; 0x25a <lcd_data_sim>
+	ldi r24, 'A'
+ 14a:	81 e4       	ldi	r24, 0x41	; 65
+	rcall lcd_data_sim
+ 14c:	86 d0       	rcall	.+268    	; 0x25a <lcd_data_sim>
+	ldi r24, 'S'
+ 14e:	83 e5       	ldi	r24, 0x53	; 83
+	rcall lcd_data_sim
+ 150:	84 d0       	rcall	.+264    	; 0x25a <lcd_data_sim>
+	ldi r24, ' '
+ 152:	80 e2       	ldi	r24, 0x20	; 32
+	rcall lcd_data_sim
+ 154:	82 d0       	rcall	.+260    	; 0x25a <lcd_data_sim>
+	ldi r24, 'D'
+ 156:	84 e4       	ldi	r24, 0x44	; 68
+	rcall lcd_data_sim
+ 158:	80 d0       	rcall	.+256    	; 0x25a <lcd_data_sim>
+	ldi r24, 'E'
+ 15a:	85 e4       	ldi	r24, 0x45	; 69
+	rcall lcd_data_sim
+ 15c:	7e d0       	rcall	.+252    	; 0x25a <lcd_data_sim>
+	ldi r24, 'T'
+ 15e:	84 e5       	ldi	r24, 0x54	; 84
+	rcall lcd_data_sim
+ 160:	7c d0       	rcall	.+248    	; 0x25a <lcd_data_sim>
+	ldi r24, 'E'
+ 162:	85 e4       	ldi	r24, 0x45	; 69
+	rcall lcd_data_sim
+ 164:	7a d0       	rcall	.+244    	; 0x25a <lcd_data_sim>
+	ldi r24, 'C'
+ 166:	83 e4       	ldi	r24, 0x43	; 67
+	rcall lcd_data_sim
+ 168:	78 d0       	rcall	.+240    	; 0x25a <lcd_data_sim>
+	ldi r24, 'T'
+ 16a:	84 e5       	ldi	r24, 0x54	; 84
+	rcall lcd_data_sim
+ 16c:	76 d0       	rcall	.+236    	; 0x25a <lcd_data_sim>
+	ldi r24, 'E'
+ 16e:	85 e4       	ldi	r24, 0x45	; 69
+	rcall lcd_data_sim
+ 170:	74 d0       	rcall	.+232    	; 0x25a <lcd_data_sim>
+	ldi r24, 'D'
+ 172:	84 e4       	ldi	r24, 0x44	; 68
+	rcall lcd_data_sim
+ 174:	72 d0       	rcall	.+228    	; 0x25a <lcd_data_sim>
+	pop r24
+ 176:	8f 91       	pop	r24
+	ret
+ 178:	08 95       	ret
+
+0000017a <print_clear>:
+
+	.global print_clear
+	print_clear:
+	push r24
+ 17a:	8f 93       	push	r24
+	ldi r24, 'C'
+ 17c:	83 e4       	ldi	r24, 0x43	; 67
+	rcall lcd_data_sim
+ 17e:	6d d0       	rcall	.+218    	; 0x25a <lcd_data_sim>
+	ldi r24, 'L'
+ 180:	8c e4       	ldi	r24, 0x4C	; 76
+	rcall lcd_data_sim
+ 182:	6b d0       	rcall	.+214    	; 0x25a <lcd_data_sim>
+	ldi r24, 'E'
+ 184:	85 e4       	ldi	r24, 0x45	; 69
+	rcall lcd_data_sim
+ 186:	69 d0       	rcall	.+210    	; 0x25a <lcd_data_sim>
+	ldi r24, 'A'
+ 188:	81 e4       	ldi	r24, 0x41	; 65
+	rcall lcd_data_sim
+ 18a:	67 d0       	rcall	.+206    	; 0x25a <lcd_data_sim>
+	ldi r24, 'R'
+ 18c:	82 e5       	ldi	r24, 0x52	; 82
+	rcall lcd_data_sim
+ 18e:	65 d0       	rcall	.+202    	; 0x25a <lcd_data_sim>
+	pop r24
+ 190:	8f 91       	pop	r24
+	ret
+ 192:	08 95       	ret
+
+00000194 <print_welcome>:
+
+	.global print_welcome
+	print_welcome:
+	push r24
+ 194:	8f 93       	push	r24
+	ldi r24, 'W' ;Print "WELCOME" on the lcd
+ 196:	87 e5       	ldi	r24, 0x57	; 87
+	rcall lcd_data_sim
+ 198:	60 d0       	rcall	.+192    	; 0x25a <lcd_data_sim>
+	ldi r24, 'E'
+ 19a:	85 e4       	ldi	r24, 0x45	; 69
+	rcall lcd_data_sim
+ 19c:	5e d0       	rcall	.+188    	; 0x25a <lcd_data_sim>
+	ldi r24, 'L'
+ 19e:	8c e4       	ldi	r24, 0x4C	; 76
+	rcall lcd_data_sim
+ 1a0:	5c d0       	rcall	.+184    	; 0x25a <lcd_data_sim>
+	ldi r24, 'C'
+ 1a2:	83 e4       	ldi	r24, 0x43	; 67
+	rcall lcd_data_sim
+ 1a4:	5a d0       	rcall	.+180    	; 0x25a <lcd_data_sim>
+	ldi r24, 'O'
+ 1a6:	8f e4       	ldi	r24, 0x4F	; 79
+	rcall lcd_data_sim
+ 1a8:	58 d0       	rcall	.+176    	; 0x25a <lcd_data_sim>
+	ldi r24, 'M'
+ 1aa:	8d e4       	ldi	r24, 0x4D	; 77
+	rcall lcd_data_sim
+ 1ac:	56 d0       	rcall	.+172    	; 0x25a <lcd_data_sim>
+	ldi r24, 'E'
+ 1ae:	85 e4       	ldi	r24, 0x45	; 69
+	rcall lcd_data_sim
+ 1b0:	54 d0       	rcall	.+168    	; 0x25a <lcd_data_sim>
+	pop r24
+ 1b2:	8f 91       	pop	r24
+	ret
+ 1b4:	08 95       	ret
+
+000001b6 <wait_msec>:
+
+	wait_msec:
+	push r24 ; 2 κύκλοι (0.250 μsec)
+ 1b6:	8f 93       	push	r24
+	push r25 ; 2 κύκλοι
+ 1b8:	9f 93       	push	r25
+	ldi r24 , lo8(998) ; φόρτωσε τον καταχ. r25:r24 με 998 (1 κύκλος - 0.125 μsec)
+ 1ba:	86 ee       	ldi	r24, 0xE6	; 230
+	ldi r25 , hi8(998) ; 1 κύκλος (0.125 μsec)
+ 1bc:	93 e0       	ldi	r25, 0x03	; 3
+	rcall wait_usec ; 3 κύκλοι (0.375 μsec), προκαλεί συνολικά καθυστέρηση 998.375 μsec
+ 1be:	05 d0       	rcall	.+10     	; 0x1ca <wait_usec>
+	pop r25 ; 2 κύκλοι (0.250 μsec)
+ 1c0:	9f 91       	pop	r25
+	pop r24 ; 2 κύκλοι
+ 1c2:	8f 91       	pop	r24
+	sbiw r24 , 1 ; 2 κύκλοι
+ 1c4:	01 97       	sbiw	r24, 0x01	; 1
+	brne wait_msec ; 1 ή 2 κύκλοι (0.125 ή 0.250 μsec)
+ 1c6:	b9 f7       	brne	.-18     	; 0x1b6 <wait_msec>
+	ret ; 4 κύκλοι (0.500 μsec)
+ 1c8:	08 95       	ret
+
+000001ca <wait_usec>:
+
+	wait_usec:
+	sbiw r24 ,1 ; 2 κύκλοι (0.250 μsec)
+ 1ca:	01 97       	sbiw	r24, 0x01	; 1
+	...
+	nop ; 1 κύκλος (0.125 μsec)
+	nop ; 1 κύκλος (0.125 μsec)
+	nop ; 1 κύκλος (0.125 μsec)
+	nop ; 1 κύκλος (0.125 μsec)
+	brne wait_usec ; 1 ή 2 κύκλοι (0.125 ή 0.250 μsec)
+ 1d4:	d1 f7       	brne	.-12     	; 0x1ca <wait_usec>
+	ret ; 4 κύκλοι (0.500 μsec)
+ 1d6:	08 95       	ret
+
+000001d8 <scan_row_sim>:
+
+    scan_row_sim:
+	out PORTC, r25 ; η αντίστοιχη γραμμή τίθεται στο λογικό ‘1’
+ 1d8:	95 bb       	out	0x15, r25	; 21
+	push r24 ; τμήμα κώδικα που προστίθεται για τη σωστή
+ 1da:	8f 93       	push	r24
+	push r25 ; λειτουργία του προγραμματος απομακρυσμένης
+ 1dc:	9f 93       	push	r25
+	ldi r24,0xF4 ; πρόσβασης
+ 1de:	84 ef       	ldi	r24, 0xF4	; 244
+	ldi r25,0x01
+ 1e0:	91 e0       	ldi	r25, 0x01	; 1
+	rcall wait_usec
+ 1e2:	f3 df       	rcall	.-26     	; 0x1ca <wait_usec>
+	pop r25
+ 1e4:	9f 91       	pop	r25
+	pop r24 ; τέλος τμήμα κώδικα
+ 1e6:	8f 91       	pop	r24
+	nop
+ 1e8:	00 00       	nop
+	nop ; καθυστέρηση για να προλάβει να γίνει η αλλαγή κατάστασης
+ 1ea:	00 00       	nop
+	in r24, PINC ; επιστρέφουν οι θέσεις (στήλες) των διακοπτών που είναι πιεσμένοι
+ 1ec:	83 b3       	in	r24, 0x13	; 19
+	andi r24 ,0x0f ; απομονώνονται τα 4 LSB όπου τα ‘1’ δείχνουν που είναι πατημένοι
+ 1ee:	8f 70       	andi	r24, 0x0F	; 15
+	ret ; οι διακόπτες.
+ 1f0:	08 95       	ret
+
+000001f2 <scan_keypad_sim>:
+
+    scan_keypad_sim:
+	push r26 ; αποθήκευσε τους καταχωρητές r27:r26 γιατι τους
+ 1f2:	af 93       	push	r26
+	push r27 ; αλλάζουμε μέσα στην ρουτίνα
+ 1f4:	bf 93       	push	r27
+	ldi r25 , 0x10 ; έλεγξε την πρώτη γραμμή του πληκτρολογίου (PC4: 1 2 3 A)
+ 1f6:	90 e1       	ldi	r25, 0x10	; 16
+	rcall scan_row_sim
+ 1f8:	ef df       	rcall	.-34     	; 0x1d8 <scan_row_sim>
+	swap r24 ; αποθήκευσε το αποτέλεσμα
+ 1fa:	82 95       	swap	r24
+	mov r27, r24 ; στα 4 msb του r27
+ 1fc:	b8 2f       	mov	r27, r24
+	ldi r25 ,0x20 ; έλεγξε τη δεύτερη γραμμή του πληκτρολογίου (PC5: 4 5 6 B)
+ 1fe:	90 e2       	ldi	r25, 0x20	; 32
+	rcall scan_row_sim
+ 200:	eb df       	rcall	.-42     	; 0x1d8 <scan_row_sim>
+	add r27, r24 ; αποθήκευσε το αποτέλεσμα στα 4 lsb του r27
+ 202:	b8 0f       	add	r27, r24
+	ldi r25 , 0x40 ; έλεγξε την τρίτη γραμμή του πληκτρολογίου (PC6: 7 8 9 C)
+ 204:	90 e4       	ldi	r25, 0x40	; 64
+	rcall scan_row_sim
+ 206:	e8 df       	rcall	.-48     	; 0x1d8 <scan_row_sim>
+	swap r24 ; αποθήκευσε το αποτέλεσμα
+ 208:	82 95       	swap	r24
+	mov r26, r24 ; στα 4 msb του r26
+ 20a:	a8 2f       	mov	r26, r24
+	ldi r25 ,0x80 ; έλεγξε την τέταρτη γραμμή του πληκτρολογίου (PC7: * 0 # D)
+ 20c:	90 e8       	ldi	r25, 0x80	; 128
+	rcall scan_row_sim
+ 20e:	e4 df       	rcall	.-56     	; 0x1d8 <scan_row_sim>
+	add r26, r24 ; αποθήκευσε το αποτέλεσμα στα 4 lsb του r26
+ 210:	a8 0f       	add	r26, r24
+	movw r24, r26 ; μετέφερε το αποτέλεσμα στους καταχωρητές r25:r24
+ 212:	cd 01       	movw	r24, r26
+	clr r26 ; προστέθηκε για την απομακρυσμένη πρόσβαση
+ 214:	aa 27       	eor	r26, r26
+	out PORTC,r26 ; προστέθηκε για την απομακρυσμένη πρόσβαση
+ 216:	a5 bb       	out	0x15, r26	; 21
+	pop r27 ; επανάφερε τους καταχωρητές r27:r26
+ 218:	bf 91       	pop	r27
+	pop r26
+ 21a:	af 91       	pop	r26
+	ret 
+ 21c:	08 95       	ret
+
+0000021e <write_2_nibbles_sim>:
+
+    write_2_nibbles_sim:
+	push r24 ; τμήμα κώδικα που προστίθεται για τη σωστή
+ 21e:	8f 93       	push	r24
+	push r25 ; λειτουργία του προγραμματος απομακρυσμένης
+ 220:	9f 93       	push	r25
+	ldi r24 ,lo8(6000) ; πρόσβασης
+ 222:	80 e7       	ldi	r24, 0x70	; 112
+	ldi r25 ,hi8(6000)
+ 224:	97 e1       	ldi	r25, 0x17	; 23
+	rcall wait_usec
+ 226:	d1 df       	rcall	.-94     	; 0x1ca <wait_usec>
+	pop r25
+ 228:	9f 91       	pop	r25
+	pop r24 ; τέλος τμήμα κώδικα
+ 22a:	8f 91       	pop	r24
+	push r24 ; στέλνει τα 4 MSB
+ 22c:	8f 93       	push	r24
+	in r25, PIND ; διαβάζονται τα 4 LSB και τα ξαναστέλνουμε
+ 22e:	90 b3       	in	r25, 0x10	; 16
+	andi r25, 0x0f ; για να μην χαλάσουμε την όποια προηγούμενη κατάσταση
+ 230:	9f 70       	andi	r25, 0x0F	; 15
+	andi r24, 0xf0 ; απομονώνονται τα 4 MSB και
+ 232:	80 7f       	andi	r24, 0xF0	; 240
+	add r24, r25 ; συνδυάζονται με τα προϋπάρχοντα 4 LSB
+ 234:	89 0f       	add	r24, r25
+	out PORTD, r24 ; και δίνονται στην έξοδο
+ 236:	82 bb       	out	0x12, r24	; 18
+	sbi PORTD, PD3 ; δημιουργείται παλμός Enable στον ακροδέκτη PD3
+ 238:	93 9a       	sbi	0x12, 3	; 18
+	cbi PORTD, PD3 ; PD3=1 και μετά PD3=0
+ 23a:	93 98       	cbi	0x12, 3	; 18
+	push r24 ; τμήμα κώδικα που προστίθεται για τη σωστή
+ 23c:	8f 93       	push	r24
+	push r25 ; λειτουργία του προγραμματος απομακρυσμένης
+ 23e:	9f 93       	push	r25
+	ldi r24 ,lo8(6000) ; πρόσβασης
+ 240:	80 e7       	ldi	r24, 0x70	; 112
+	ldi r25 ,hi8(6000)
+ 242:	97 e1       	ldi	r25, 0x17	; 23
+	rcall wait_usec
+ 244:	c2 df       	rcall	.-124    	; 0x1ca <wait_usec>
+	pop r25
+ 246:	9f 91       	pop	r25
+	pop r24 ; τέλος τμήμα κώδικα
+ 248:	8f 91       	pop	r24
+	pop r24 ; στέλνει τα 4 LSB. Ανακτάται το byte.
+ 24a:	8f 91       	pop	r24
+	swap r24 ; εναλλάσσονται τα 4 MSB με τα 4 LSB
+ 24c:	82 95       	swap	r24
+	andi r24 ,0xf0 ; που με την σειρά τους αποστέλλονται
+ 24e:	80 7f       	andi	r24, 0xF0	; 240
+	add r24, r25
+ 250:	89 0f       	add	r24, r25
+	out PORTD, r24
+ 252:	82 bb       	out	0x12, r24	; 18
+	sbi PORTD, PD3 ; Νέος παλμός Enable
+ 254:	93 9a       	sbi	0x12, 3	; 18
+	cbi PORTD, PD3
+ 256:	93 98       	cbi	0x12, 3	; 18
+	ret
+ 258:	08 95       	ret
+
+0000025a <lcd_data_sim>:
+
+	lcd_data_sim:
+	push r24 ; αποθήκευσε τους καταχωρητές r25:r24 γιατί τους
+ 25a:	8f 93       	push	r24
+	push r25 ; αλλάζουμε μέσα στη ρουτίνα
+ 25c:	9f 93       	push	r25
+	sbi PORTD, PD2 ; επιλογή του καταχωρητή δεδομένων (PD2=1)
+ 25e:	92 9a       	sbi	0x12, 2	; 18
+	rcall write_2_nibbles_sim ; αποστολή του byte
+ 260:	de df       	rcall	.-68     	; 0x21e <write_2_nibbles_sim>
+	ldi r24 ,43 ; αναμονή 43μsec μέχρι να ολοκληρωθεί η λήψη
+ 262:	8b e2       	ldi	r24, 0x2B	; 43
+	ldi r25 ,0 ; των δεδομένων από τον ελεγκτή της lcd
+ 264:	90 e0       	ldi	r25, 0x00	; 0
+	rcall wait_usec
+ 266:	b1 df       	rcall	.-158    	; 0x1ca <wait_usec>
+	pop r25 ;επανάφερε τους καταχωρητές r25:r24
+ 268:	9f 91       	pop	r25
+	pop r24
+ 26a:	8f 91       	pop	r24
+	ret 
+ 26c:	08 95       	ret
+
+0000026e <lcd_command_sim>:
+
+	lcd_command_sim:
+	push r24 ; αποθήκευσε τους καταχωρητές r25:r24 γιατί τους
+ 26e:	8f 93       	push	r24
+	push r25 ; αλλάζουμε μέσα στη ρουτίνα
+ 270:	9f 93       	push	r25
+	cbi PORTD, PD2 ; επιλογή του καταχωρητή εντολών (PD2=0)
+ 272:	92 98       	cbi	0x12, 2	; 18
+	rcall write_2_nibbles_sim ; αποστολή της εντολής και αναμονή 39μsec
+ 274:	d4 df       	rcall	.-88     	; 0x21e <write_2_nibbles_sim>
+	ldi r24, 39 ; για την ολοκλήρωση της εκτέλεσης της από τον ελεγκτή της lcd.
+ 276:	87 e2       	ldi	r24, 0x27	; 39
+	ldi r25, 0 ; ΣΗΜ.: υπάρχουν δύο εντολές, οι clear display και return home,
+ 278:	90 e0       	ldi	r25, 0x00	; 0
+	rcall wait_usec ; που απαιτούν σημαντικά μεγαλύτερο χρονικό διάστημα.
+ 27a:	a7 df       	rcall	.-178    	; 0x1ca <wait_usec>
+	pop r25 ; επανάφερε τους καταχωρητές r25:r24
+ 27c:	9f 91       	pop	r25
+	pop r24
+ 27e:	8f 91       	pop	r24
+	ret 
+ 280:	08 95       	ret
+
+00000282 <keypad_to_ascii>:
+void print_gas_detected();
+void print_clear();
+void print_welcome();
+
+char keypad_to_ascii(int btn) { //returns the ascii character that corresponds to the first bit 1 found
+	if ((btn & 0x0001)==0x0001) {
+ 282:	80 fd       	sbrc	r24, 0
+ 284:	20 c0       	rjmp	.+64     	; 0x2c6 <keypad_to_ascii+0x44>
+		return '*';
+	}
+	if ((btn & 0x0002)==0x0002) {
+ 286:	81 fd       	sbrc	r24, 1
+ 288:	20 c0       	rjmp	.+64     	; 0x2ca <keypad_to_ascii+0x48>
+		return '0';
+	}
+	if ((btn & 0x0004)==0x0004) {
+ 28a:	82 fd       	sbrc	r24, 2
+ 28c:	20 c0       	rjmp	.+64     	; 0x2ce <keypad_to_ascii+0x4c>
+		return '#';
+	}
+	if ((btn & 0x0008)==0x0008) {
+ 28e:	83 fd       	sbrc	r24, 3
+ 290:	20 c0       	rjmp	.+64     	; 0x2d2 <keypad_to_ascii+0x50>
+		return 'D';
+	}
+	if ((btn & 0x0010)==0x0010) {
+ 292:	84 fd       	sbrc	r24, 4
+ 294:	20 c0       	rjmp	.+64     	; 0x2d6 <keypad_to_ascii+0x54>
+		return '7';
+	}
+	if ((btn & 0x0020)==0x0020) {
+ 296:	85 fd       	sbrc	r24, 5
+ 298:	20 c0       	rjmp	.+64     	; 0x2da <keypad_to_ascii+0x58>
+		return '8';
+	}
+	if ((btn & 0x0040)==0x0040) {
+ 29a:	86 fd       	sbrc	r24, 6
+ 29c:	20 c0       	rjmp	.+64     	; 0x2de <keypad_to_ascii+0x5c>
+		return '9';
+	}
+	if ((btn & 0x0080)==0x0080) {
+ 29e:	87 fd       	sbrc	r24, 7
+ 2a0:	20 c0       	rjmp	.+64     	; 0x2e2 <keypad_to_ascii+0x60>
+		return 'C';
+	}
+	if ((btn & 0x0100)==0x0100) {
+ 2a2:	90 fd       	sbrc	r25, 0
+ 2a4:	20 c0       	rjmp	.+64     	; 0x2e6 <keypad_to_ascii+0x64>
+		return '4';
+	}
+	if ((btn & 0x0200)==0x0200) {
+ 2a6:	91 fd       	sbrc	r25, 1
+ 2a8:	20 c0       	rjmp	.+64     	; 0x2ea <keypad_to_ascii+0x68>
+		return '5';
+	}
+	if ((btn & 0x0400)==0x0400) {
+ 2aa:	92 fd       	sbrc	r25, 2
+ 2ac:	20 c0       	rjmp	.+64     	; 0x2ee <keypad_to_ascii+0x6c>
+		return '6';
+	}
+	if ((btn & 0x0800)==0x0800) {
+ 2ae:	93 fd       	sbrc	r25, 3
+ 2b0:	20 c0       	rjmp	.+64     	; 0x2f2 <keypad_to_ascii+0x70>
+		return 'B';
+	}
+	if ((btn & 0x1000)==0x1000) {
+ 2b2:	94 fd       	sbrc	r25, 4
+ 2b4:	20 c0       	rjmp	.+64     	; 0x2f6 <keypad_to_ascii+0x74>
+		return '1';
+	}
+	if ((btn & 0x2000)==0x2000) {
+ 2b6:	95 fd       	sbrc	r25, 5
+ 2b8:	20 c0       	rjmp	.+64     	; 0x2fa <keypad_to_ascii+0x78>
+		return '2';
+	}
+	if ((btn & 0x4000)==0x4000) {
+ 2ba:	96 fd       	sbrc	r25, 6
+ 2bc:	20 c0       	rjmp	.+64     	; 0x2fe <keypad_to_ascii+0x7c>
+		return '3';
+	}
+	if ((btn & 0x8000)==0x8000) {
+ 2be:	99 23       	and	r25, r25
+ 2c0:	04 f5       	brge	.+64     	; 0x302 <keypad_to_ascii+0x80>
+		return 'A';
+ 2c2:	81 e4       	ldi	r24, 0x41	; 65
+ 2c4:	08 95       	ret
+void print_clear();
+void print_welcome();
+
+char keypad_to_ascii(int btn) { //returns the ascii character that corresponds to the first bit 1 found
+	if ((btn & 0x0001)==0x0001) {
+		return '*';
+ 2c6:	8a e2       	ldi	r24, 0x2A	; 42
+ 2c8:	08 95       	ret
+	}
+	if ((btn & 0x0002)==0x0002) {
+		return '0';
+ 2ca:	80 e3       	ldi	r24, 0x30	; 48
+ 2cc:	08 95       	ret
+	}
+	if ((btn & 0x0004)==0x0004) {
+		return '#';
+ 2ce:	83 e2       	ldi	r24, 0x23	; 35
+ 2d0:	08 95       	ret
+	}
+	if ((btn & 0x0008)==0x0008) {
+		return 'D';
+ 2d2:	84 e4       	ldi	r24, 0x44	; 68
+ 2d4:	08 95       	ret
+	}
+	if ((btn & 0x0010)==0x0010) {
+		return '7';
+ 2d6:	87 e3       	ldi	r24, 0x37	; 55
+ 2d8:	08 95       	ret
+	}
+	if ((btn & 0x0020)==0x0020) {
+		return '8';
+ 2da:	88 e3       	ldi	r24, 0x38	; 56
+ 2dc:	08 95       	ret
+	}
+	if ((btn & 0x0040)==0x0040) {
+		return '9';
+ 2de:	89 e3       	ldi	r24, 0x39	; 57
+ 2e0:	08 95       	ret
+	}
+	if ((btn & 0x0080)==0x0080) {
+		return 'C';
+ 2e2:	83 e4       	ldi	r24, 0x43	; 67
+ 2e4:	08 95       	ret
+	}
+	if ((btn & 0x0100)==0x0100) {
+		return '4';
+ 2e6:	84 e3       	ldi	r24, 0x34	; 52
+ 2e8:	08 95       	ret
+	}
+	if ((btn & 0x0200)==0x0200) {
+		return '5';
+ 2ea:	85 e3       	ldi	r24, 0x35	; 53
+ 2ec:	08 95       	ret
+	}
+	if ((btn & 0x0400)==0x0400) {
+		return '6';
+ 2ee:	86 e3       	ldi	r24, 0x36	; 54
+ 2f0:	08 95       	ret
+	}
+	if ((btn & 0x0800)==0x0800) {
+		return 'B';
+ 2f2:	82 e4       	ldi	r24, 0x42	; 66
+ 2f4:	08 95       	ret
+	}
+	if ((btn & 0x1000)==0x1000) {
+		return '1';
+ 2f6:	81 e3       	ldi	r24, 0x31	; 49
+ 2f8:	08 95       	ret
+	}
+	if ((btn & 0x2000)==0x2000) {
+		return '2';
+ 2fa:	82 e3       	ldi	r24, 0x32	; 50
+ 2fc:	08 95       	ret
+	}
+	if ((btn & 0x4000)==0x4000) {
+		return '3';
+ 2fe:	83 e3       	ldi	r24, 0x33	; 51
+ 300:	08 95       	ret
+	}
+	if ((btn & 0x8000)==0x8000) {
+		return 'A';
+	}
+	return 0;
+ 302:	80 e0       	ldi	r24, 0x00	; 0
+}
+ 304:	08 95       	ret
+
+00000306 <__vector_8>:
+
+ISR(TIMER1_OVF_vect) {
+ 306:	1f 92       	push	r1
+ 308:	0f 92       	push	r0
+ 30a:	0f b6       	in	r0, 0x3f	; 63
+ 30c:	0f 92       	push	r0
+ 30e:	11 24       	eor	r1, r1
+ 310:	2f 93       	push	r18
+ 312:	3f 93       	push	r19
+ 314:	4f 93       	push	r20
+ 316:	5f 93       	push	r21
+ 318:	6f 93       	push	r22
+ 31a:	7f 93       	push	r23
+ 31c:	8f 93       	push	r24
+ 31e:	9f 93       	push	r25
+ 320:	af 93       	push	r26
+ 322:	bf 93       	push	r27
+ 324:	ef 93       	push	r30
+ 326:	ff 93       	push	r31
+	if(special_team==0) { // if a special team has entered don't blink the leds
+ 328:	80 91 68 00 	lds	r24, 0x0068	; 0x800068 <special_team>
+ 32c:	90 91 69 00 	lds	r25, 0x0069	; 0x800069 <special_team+0x1>
+ 330:	89 2b       	or	r24, r25
+ 332:	09 f0       	breq	.+2      	; 0x336 <__vector_8+0x30>
+ 334:	67 c0       	rjmp	.+206    	; 0x404 <__DATA_REGION_LENGTH__+0x4>
+		if((led_state & 0x10) == 0x10) { //gas detected
+ 336:	80 91 64 00 	lds	r24, 0x0064	; 0x800064 <led_state>
+ 33a:	84 ff       	sbrs	r24, 4
+ 33c:	45 c0       	rjmp	.+138    	; 0x3c8 <__vector_8+0xc2>
+			if(previous_state!=1) { //if previous state was gas detected don't print gas detected again
+ 33e:	80 91 66 00 	lds	r24, 0x0066	; 0x800066 <previous_state>
+ 342:	90 91 67 00 	lds	r25, 0x0067	; 0x800067 <previous_state+0x1>
+ 346:	01 97       	sbiw	r24, 0x01	; 1
+ 348:	51 f0       	breq	.+20     	; 0x35e <__vector_8+0x58>
+				clear_lcd();
+ 34a:	0e 94 9d 00 	call	0x13a	; 0x13a <clear_lcd>
+				print_gas_detected();
+ 34e:	0e 94 a2 00 	call	0x144	; 0x144 <print_gas_detected>
+				previous_state=1;
+ 352:	81 e0       	ldi	r24, 0x01	; 1
+ 354:	90 e0       	ldi	r25, 0x00	; 0
+ 356:	90 93 67 00 	sts	0x0067, r25	; 0x800067 <previous_state+0x1>
+ 35a:	80 93 66 00 	sts	0x0066, r24	; 0x800066 <previous_state>
+			}
+			if(blink_timer<5) { //blink gas level leds for 0.5s
+ 35e:	80 91 62 00 	lds	r24, 0x0062	; 0x800062 <_edata>
+ 362:	90 91 63 00 	lds	r25, 0x0063	; 0x800063 <_edata+0x1>
+ 366:	05 97       	sbiw	r24, 0x05	; 5
+ 368:	b4 f4       	brge	.+44     	; 0x396 <__vector_8+0x90>
+				led7=PORTB & 0x80;
+ 36a:	88 b3       	in	r24, 0x18	; 24
+ 36c:	80 78       	andi	r24, 0x80	; 128
+ 36e:	28 2f       	mov	r18, r24
+ 370:	30 e0       	ldi	r19, 0x00	; 0
+ 372:	30 93 6d 00 	sts	0x006D, r19	; 0x80006d <led7+0x1>
+ 376:	20 93 6c 00 	sts	0x006C, r18	; 0x80006c <led7>
+				PORTB = led7 | led_state; //without interfering with PB7
+ 37a:	90 91 64 00 	lds	r25, 0x0064	; 0x800064 <led_state>
+ 37e:	89 2b       	or	r24, r25
+ 380:	88 bb       	out	0x18, r24	; 24
+				blink_timer++;
+ 382:	80 91 62 00 	lds	r24, 0x0062	; 0x800062 <_edata>
+ 386:	90 91 63 00 	lds	r25, 0x0063	; 0x800063 <_edata+0x1>
+ 38a:	01 96       	adiw	r24, 0x01	; 1
+ 38c:	90 93 63 00 	sts	0x0063, r25	; 0x800063 <_edata+0x1>
+ 390:	80 93 62 00 	sts	0x0062, r24	; 0x800062 <_edata>
+ 394:	37 c0       	rjmp	.+110    	; 0x404 <__DATA_REGION_LENGTH__+0x4>
+			}
+			else { //then blink them off for another 0.5s
+				led7 = PORTB & 0x80;
+ 396:	88 b3       	in	r24, 0x18	; 24
+ 398:	80 78       	andi	r24, 0x80	; 128
+ 39a:	28 2f       	mov	r18, r24
+ 39c:	30 e0       	ldi	r19, 0x00	; 0
+ 39e:	30 93 6d 00 	sts	0x006D, r19	; 0x80006d <led7+0x1>
+ 3a2:	20 93 6c 00 	sts	0x006C, r18	; 0x80006c <led7>
+				PORTB = led7; //without interfering with PB7
+ 3a6:	88 bb       	out	0x18, r24	; 24
+				blink_timer++;
+ 3a8:	80 91 62 00 	lds	r24, 0x0062	; 0x800062 <_edata>
+ 3ac:	90 91 63 00 	lds	r25, 0x0063	; 0x800063 <_edata+0x1>
+ 3b0:	01 96       	adiw	r24, 0x01	; 1
+ 3b2:	90 93 63 00 	sts	0x0063, r25	; 0x800063 <_edata+0x1>
+ 3b6:	80 93 62 00 	sts	0x0062, r24	; 0x800062 <_edata>
+				if(blink_timer==10) { //reset blink timer for the next blink
+ 3ba:	0a 97       	sbiw	r24, 0x0a	; 10
+ 3bc:	19 f5       	brne	.+70     	; 0x404 <__DATA_REGION_LENGTH__+0x4>
+					blink_timer=0;
+ 3be:	10 92 63 00 	sts	0x0063, r1	; 0x800063 <_edata+0x1>
+ 3c2:	10 92 62 00 	sts	0x0062, r1	; 0x800062 <_edata>
+ 3c6:	1e c0       	rjmp	.+60     	; 0x404 <__DATA_REGION_LENGTH__+0x4>
+				}
+			}
+		}
+		else { //clear
+			if(previous_state!=0) { //if previous state was clear don't print clear again
+ 3c8:	80 91 66 00 	lds	r24, 0x0066	; 0x800066 <previous_state>
+ 3cc:	90 91 67 00 	lds	r25, 0x0067	; 0x800067 <previous_state+0x1>
+ 3d0:	89 2b       	or	r24, r25
+ 3d2:	41 f0       	breq	.+16     	; 0x3e4 <__vector_8+0xde>
+				clear_lcd();
+ 3d4:	0e 94 9d 00 	call	0x13a	; 0x13a <clear_lcd>
+				print_clear();
+ 3d8:	0e 94 bd 00 	call	0x17a	; 0x17a <print_clear>
+				previous_state=0;
+ 3dc:	10 92 67 00 	sts	0x0067, r1	; 0x800067 <previous_state+0x1>
+ 3e0:	10 92 66 00 	sts	0x0066, r1	; 0x800066 <previous_state>
+			}
+			led7 = PORTB & 0x80;
+ 3e4:	88 b3       	in	r24, 0x18	; 24
+ 3e6:	80 78       	andi	r24, 0x80	; 128
+ 3e8:	28 2f       	mov	r18, r24
+ 3ea:	30 e0       	ldi	r19, 0x00	; 0
+ 3ec:	30 93 6d 00 	sts	0x006D, r19	; 0x80006d <led7+0x1>
+ 3f0:	20 93 6c 00 	sts	0x006C, r18	; 0x80006c <led7>
+			PORTB = led7 | led_state; //print gas level without interfering with PB7
+ 3f4:	90 91 64 00 	lds	r25, 0x0064	; 0x800064 <led_state>
+ 3f8:	89 2b       	or	r24, r25
+ 3fa:	88 bb       	out	0x18, r24	; 24
+			blink_timer=0; //reset blink timer for gas alarm
+ 3fc:	10 92 63 00 	sts	0x0063, r1	; 0x800063 <_edata+0x1>
+ 400:	10 92 62 00 	sts	0x0062, r1	; 0x800062 <_edata>
+		}
+	}
+	ADCSRA|=(1<<ADSC); //start conversion
+ 404:	86 b1       	in	r24, 0x06	; 6
+ 406:	80 64       	ori	r24, 0x40	; 64
+ 408:	86 b9       	out	0x06, r24	; 6
+	
+	while(ADCSRA & (1<<ADSC)); //wait until conversion is done
+ 40a:	36 99       	sbic	0x06, 6	; 6
+ 40c:	fe cf       	rjmp	.-4      	; 0x40a <__DATA_REGION_LENGTH__+0xa>
+	value_read = ADCW; //store value read from ADCW in value_read
+ 40e:	84 b1       	in	r24, 0x04	; 4
+ 410:	95 b1       	in	r25, 0x05	; 5
+ 412:	90 93 6b 00 	sts	0x006B, r25	; 0x80006b <value_read+0x1>
+ 416:	80 93 6a 00 	sts	0x006A, r24	; 0x80006a <value_read>
+	if(value_read>=0x117){ //if value read is higher than 90ppm
+ 41a:	87 31       	cpi	r24, 0x17	; 23
+ 41c:	21 e0       	ldi	r18, 0x01	; 1
+ 41e:	92 07       	cpc	r25, r18
+ 420:	3c f0       	brlt	.+14     	; 0x430 <__DATA_REGION_LENGTH__+0x30>
+		led_state=0b01111111;
+ 422:	8f e7       	ldi	r24, 0x7F	; 127
+ 424:	90 e0       	ldi	r25, 0x00	; 0
+ 426:	90 93 65 00 	sts	0x0065, r25	; 0x800065 <led_state+0x1>
+ 42a:	80 93 64 00 	sts	0x0064, r24	; 0x800064 <led_state>
+ 42e:	3f c0       	rjmp	.+126    	; 0x4ae <__stack+0x4f>
+	}
+	else if(value_read>=0xF2){ //if value read is higher than 84ppm
+ 430:	82 3f       	cpi	r24, 0xF2	; 242
+ 432:	91 05       	cpc	r25, r1
+ 434:	3c f0       	brlt	.+14     	; 0x444 <__DATA_REGION_LENGTH__+0x44>
+		led_state=0b00111111;
+ 436:	8f e3       	ldi	r24, 0x3F	; 63
+ 438:	90 e0       	ldi	r25, 0x00	; 0
+ 43a:	90 93 65 00 	sts	0x0065, r25	; 0x800065 <led_state+0x1>
+ 43e:	80 93 64 00 	sts	0x0064, r24	; 0x800064 <led_state>
+ 442:	35 c0       	rjmp	.+106    	; 0x4ae <__stack+0x4f>
+	}
+	else if(value_read>=0xCD){ //if value read is higher than 70ppm
+ 444:	8d 3c       	cpi	r24, 0xCD	; 205
+ 446:	91 05       	cpc	r25, r1
+ 448:	3c f0       	brlt	.+14     	; 0x458 <__DATA_REGION_LENGTH__+0x58>
+		led_state=0b00011111;
+ 44a:	8f e1       	ldi	r24, 0x1F	; 31
+ 44c:	90 e0       	ldi	r25, 0x00	; 0
+ 44e:	90 93 65 00 	sts	0x0065, r25	; 0x800065 <led_state+0x1>
+ 452:	80 93 64 00 	sts	0x0064, r24	; 0x800064 <led_state>
+ 456:	2b c0       	rjmp	.+86     	; 0x4ae <__stack+0x4f>
+	}
+	else if(value_read>=0xA8){ //if value read is higher than 56ppm
+ 458:	88 3a       	cpi	r24, 0xA8	; 168
+ 45a:	91 05       	cpc	r25, r1
+ 45c:	3c f0       	brlt	.+14     	; 0x46c <__stack+0xd>
+		led_state=0b00001111;
+ 45e:	8f e0       	ldi	r24, 0x0F	; 15
+ 460:	90 e0       	ldi	r25, 0x00	; 0
+ 462:	90 93 65 00 	sts	0x0065, r25	; 0x800065 <led_state+0x1>
+ 466:	80 93 64 00 	sts	0x0064, r24	; 0x800064 <led_state>
+ 46a:	21 c0       	rjmp	.+66     	; 0x4ae <__stack+0x4f>
+	}
+	else if(value_read>=0x83){ //if value read is higher than 42ppm
+ 46c:	83 38       	cpi	r24, 0x83	; 131
+ 46e:	91 05       	cpc	r25, r1
+ 470:	3c f0       	brlt	.+14     	; 0x480 <__stack+0x21>
+		led_state=0b00000111;
+ 472:	87 e0       	ldi	r24, 0x07	; 7
+ 474:	90 e0       	ldi	r25, 0x00	; 0
+ 476:	90 93 65 00 	sts	0x0065, r25	; 0x800065 <led_state+0x1>
+ 47a:	80 93 64 00 	sts	0x0064, r24	; 0x800064 <led_state>
+ 47e:	17 c0       	rjmp	.+46     	; 0x4ae <__stack+0x4f>
+	}
+	else if(value_read>=0x5E){ //if value read is higher than 28ppm
+ 480:	8e 35       	cpi	r24, 0x5E	; 94
+ 482:	91 05       	cpc	r25, r1
+ 484:	3c f0       	brlt	.+14     	; 0x494 <__stack+0x35>
+		led_state=0b00000011;
+ 486:	83 e0       	ldi	r24, 0x03	; 3
+ 488:	90 e0       	ldi	r25, 0x00	; 0
+ 48a:	90 93 65 00 	sts	0x0065, r25	; 0x800065 <led_state+0x1>
+ 48e:	80 93 64 00 	sts	0x0064, r24	; 0x800064 <led_state>
+ 492:	0d c0       	rjmp	.+26     	; 0x4ae <__stack+0x4f>
+	}
+	else if(value_read>=0x39){ //if value read is higher than 14ppm
+ 494:	c9 97       	sbiw	r24, 0x39	; 57
+ 496:	3c f0       	brlt	.+14     	; 0x4a6 <__stack+0x47>
+		led_state=0b00000001;
+ 498:	81 e0       	ldi	r24, 0x01	; 1
+ 49a:	90 e0       	ldi	r25, 0x00	; 0
+ 49c:	90 93 65 00 	sts	0x0065, r25	; 0x800065 <led_state+0x1>
+ 4a0:	80 93 64 00 	sts	0x0064, r24	; 0x800064 <led_state>
+ 4a4:	04 c0       	rjmp	.+8      	; 0x4ae <__stack+0x4f>
+	}
+	else{ //if value read is lower than 14ppm
+		led_state=0;
+ 4a6:	10 92 65 00 	sts	0x0065, r1	; 0x800065 <led_state+0x1>
+ 4aa:	10 92 64 00 	sts	0x0064, r1	; 0x800064 <led_state>
+	}
+	
+	
+	TCNT1H=0xCF;
+ 4ae:	8f ec       	ldi	r24, 0xCF	; 207
+ 4b0:	8d bd       	out	0x2d, r24	; 45
+	TCNT1L=0x2C; //reset TCNT1 for overflow after 0.1s
+ 4b2:	8c e2       	ldi	r24, 0x2C	; 44
+ 4b4:	8c bd       	out	0x2c, r24	; 44
+}
+ 4b6:	ff 91       	pop	r31
+ 4b8:	ef 91       	pop	r30
+ 4ba:	bf 91       	pop	r27
+ 4bc:	af 91       	pop	r26
+ 4be:	9f 91       	pop	r25
+ 4c0:	8f 91       	pop	r24
+ 4c2:	7f 91       	pop	r23
+ 4c4:	6f 91       	pop	r22
+ 4c6:	5f 91       	pop	r21
+ 4c8:	4f 91       	pop	r20
+ 4ca:	3f 91       	pop	r19
+ 4cc:	2f 91       	pop	r18
+ 4ce:	0f 90       	pop	r0
+ 4d0:	0f be       	out	0x3f, r0	; 63
+ 4d2:	0f 90       	pop	r0
+ 4d4:	1f 90       	pop	r1
+ 4d6:	18 95       	reti
+
+000004d8 <main>:
+
+int main(void)
+{
+	DDRC = 0xF0; //4 MSBs of PORTC as outputs 4LSBs as inputs
+ 4d8:	80 ef       	ldi	r24, 0xF0	; 240
+ 4da:	84 bb       	out	0x14, r24	; 20
+	PORTC = 0x00; //disable pull-up resistors
+ 4dc:	15 ba       	out	0x15, r1	; 21
+	DDRB = 0xFF; //PORTB as output
+ 4de:	8f ef       	ldi	r24, 0xFF	; 255
+ 4e0:	87 bb       	out	0x17, r24	; 23
+	DDRA = 0x00; //PORTA as input
+ 4e2:	1a ba       	out	0x1a, r1	; 26
+	DDRD = 0xFF; //PORTD as output
+ 4e4:	81 bb       	out	0x11, r24	; 17
+	
+	ADMUX = 0x40; //Vref: Vcc
+ 4e6:	80 e4       	ldi	r24, 0x40	; 64
+ 4e8:	87 b9       	out	0x07, r24	; 7
+	ADCSRA = (1<<ADEN)|(1<<ADPS2)|(1<<ADPS1)|(1<<ADPS0); //no interrupts
+ 4ea:	87 e8       	ldi	r24, 0x87	; 135
+ 4ec:	86 b9       	out	0x06, r24	; 6
+	
+	TCCR1B = 0x03; //CK/64
+ 4ee:	83 e0       	ldi	r24, 0x03	; 3
+ 4f0:	8e bd       	out	0x2e, r24	; 46
+	TCNT1H = 0xCF;
+ 4f2:	8f ec       	ldi	r24, 0xCF	; 207
+ 4f4:	8d bd       	out	0x2d, r24	; 45
+	TCNT1L = 0x2C; //initialize TCNT1 for overflow after 0.1s
+ 4f6:	8c e2       	ldi	r24, 0x2C	; 44
+ 4f8:	8c bd       	out	0x2c, r24	; 44
+	TIMSK = 0x04; //enable overflow interrupt for TCNT1
+ 4fa:	84 e0       	ldi	r24, 0x04	; 4
+ 4fc:	89 bf       	out	0x39, r24	; 57
+	
+	int btn;
+	int digit1, digit2;
+	//scan_keypad_rising_edge_sim(); //just to instantiate _tmp_ assembly variable
+	initialize_variable(); //initialize _tmp_
+ 4fe:	0e 94 5c 00 	call	0xb8	; 0xb8 <initialize_variable>
+	lcd_init_sim(); //initialize lcd
+ 502:	0e 94 60 00 	call	0xc0	; 0xc0 <lcd_init_sim>
+	previous_state=2; //invalid previous state so that we get a print at the start
+ 506:	82 e0       	ldi	r24, 0x02	; 2
+ 508:	90 e0       	ldi	r25, 0x00	; 0
+ 50a:	90 93 67 00 	sts	0x0067, r25	; 0x800067 <previous_state+0x1>
+ 50e:	80 93 66 00 	sts	0x0066, r24	; 0x800066 <previous_state>
+	special_team=0; //no special team has entered at the start
+ 512:	10 92 69 00 	sts	0x0069, r1	; 0x800069 <special_team+0x1>
+ 516:	10 92 68 00 	sts	0x0068, r1	; 0x800068 <special_team>
+	sei(); //enable interrupts
+ 51a:	78 94       	sei
+	while (1)
+	{
+		btn=0;
+ 51c:	80 e0       	ldi	r24, 0x00	; 0
+ 51e:	90 e0       	ldi	r25, 0x00	; 0
+		while(btn==0){
+ 520:	02 c0       	rjmp	.+4      	; 0x526 <main+0x4e>
+			btn=scan_keypad_rising_edge_sim(); //scan the keypad until a key is pressed
+ 522:	0e 94 3e 00 	call	0x7c	; 0x7c <scan_keypad_rising_edge_sim>
+	special_team=0; //no special team has entered at the start
+	sei(); //enable interrupts
+	while (1)
+	{
+		btn=0;
+		while(btn==0){
+ 526:	00 97       	sbiw	r24, 0x00	; 0
+ 528:	e1 f3       	breq	.-8      	; 0x522 <main+0x4a>
+			btn=scan_keypad_rising_edge_sim(); //scan the keypad until a key is pressed
+		}
+		digit1=keypad_to_ascii(btn)-48; //translate the first key pressed to an ascii character then to an integer
+ 52a:	0e 94 41 01 	call	0x282	; 0x282 <keypad_to_ascii>
+ 52e:	c8 2f       	mov	r28, r24
+		btn=0;
+ 530:	80 e0       	ldi	r24, 0x00	; 0
+ 532:	90 e0       	ldi	r25, 0x00	; 0
+		while(btn==0){
+ 534:	02 c0       	rjmp	.+4      	; 0x53a <main+0x62>
+			btn=scan_keypad_rising_edge_sim(); //wait until the second key is pressed
+ 536:	0e 94 3e 00 	call	0x7c	; 0x7c <scan_keypad_rising_edge_sim>
+		while(btn==0){
+			btn=scan_keypad_rising_edge_sim(); //scan the keypad until a key is pressed
+		}
+		digit1=keypad_to_ascii(btn)-48; //translate the first key pressed to an ascii character then to an integer
+		btn=0;
+		while(btn==0){
+ 53a:	00 97       	sbiw	r24, 0x00	; 0
+ 53c:	e1 f3       	breq	.-8      	; 0x536 <main+0x5e>
+			btn=scan_keypad_rising_edge_sim(); //wait until the second key is pressed
+		}
+		digit2=keypad_to_ascii(btn)-48; //translate the second key pressed to an ascii character then to an integer
+ 53e:	0e 94 41 01 	call	0x282	; 0x282 <keypad_to_ascii>
+		
+		if((digit1==4)&&(digit2==5)) { //if password is correct
+ 542:	c4 33       	cpi	r28, 0x34	; 52
+ 544:	09 f0       	breq	.+2      	; 0x548 <main+0x70>
+ 546:	47 c0       	rjmp	.+142    	; 0x5d6 <main+0xfe>
+ 548:	85 33       	cpi	r24, 0x35	; 53
+ 54a:	09 f0       	breq	.+2      	; 0x54e <main+0x76>
+ 54c:	47 c0       	rjmp	.+142    	; 0x5dc <main+0x104>
+			//cli(); //disable interrupts
+			special_team=1;
+ 54e:	81 e0       	ldi	r24, 0x01	; 1
+ 550:	90 e0       	ldi	r25, 0x00	; 0
+ 552:	90 93 69 00 	sts	0x0069, r25	; 0x800069 <special_team+0x1>
+ 556:	80 93 68 00 	sts	0x0068, r24	; 0x800068 <special_team>
+			PORTB=0x80|led_state; //light PB7 and gas indicator constantly
+ 55a:	80 91 64 00 	lds	r24, 0x0064	; 0x800064 <led_state>
+ 55e:	80 68       	ori	r24, 0x80	; 128
+ 560:	88 bb       	out	0x18, r24	; 24
+			clear_lcd();
+ 562:	0e 94 9d 00 	call	0x13a	; 0x13a <clear_lcd>
+			print_welcome();
+ 566:	0e 94 ca 00 	call	0x194	; 0x194 <print_welcome>
+			for(int i=0; i<190; ++i) {			//we need to keep scanning the keypad. Each scan takes longer than 19ms (19ms is the total delay time from delay routines)
+ 56a:	c0 e0       	ldi	r28, 0x00	; 0
+ 56c:	d0 e0       	ldi	r29, 0x00	; 0
+ 56e:	07 c0       	rjmp	.+14     	; 0x57e <main+0xa6>
+				scan_keypad_rising_edge_sim();	//so we call it 190 times so that the leds stay on for ~4secs
+ 570:	0e 94 3e 00 	call	0x7c	; 0x7c <scan_keypad_rising_edge_sim>
+				PORTB=0x80|led_state; //keep updating the gas level indicator
+ 574:	80 91 64 00 	lds	r24, 0x0064	; 0x800064 <led_state>
+ 578:	80 68       	ori	r24, 0x80	; 128
+ 57a:	88 bb       	out	0x18, r24	; 24
+			//cli(); //disable interrupts
+			special_team=1;
+			PORTB=0x80|led_state; //light PB7 and gas indicator constantly
+			clear_lcd();
+			print_welcome();
+			for(int i=0; i<190; ++i) {			//we need to keep scanning the keypad. Each scan takes longer than 19ms (19ms is the total delay time from delay routines)
+ 57c:	21 96       	adiw	r28, 0x01	; 1
+ 57e:	ce 3b       	cpi	r28, 0xBE	; 190
+ 580:	d1 05       	cpc	r29, r1
+ 582:	b4 f3       	brlt	.-20     	; 0x570 <main+0x98>
+				scan_keypad_rising_edge_sim();	//so we call it 190 times so that the leds stay on for ~4secs
+				PORTB=0x80|led_state; //keep updating the gas level indicator
+			}
+			previous_state=2; //invalid previous state so that we get a print
+ 584:	82 e0       	ldi	r24, 0x02	; 2
+ 586:	90 e0       	ldi	r25, 0x00	; 0
+ 588:	90 93 67 00 	sts	0x0067, r25	; 0x800067 <previous_state+0x1>
+ 58c:	80 93 66 00 	sts	0x0066, r24	; 0x800066 <previous_state>
+			PORTB=led_state; //PB7 off
+ 590:	80 91 64 00 	lds	r24, 0x0064	; 0x800064 <led_state>
+ 594:	88 bb       	out	0x18, r24	; 24
+			special_team=0;
+ 596:	10 92 69 00 	sts	0x0069, r1	; 0x800069 <special_team+0x1>
+ 59a:	10 92 68 00 	sts	0x0068, r1	; 0x800068 <special_team>
+ 59e:	be cf       	rjmp	.-132    	; 0x51c <main+0x44>
+			//sei(); //re-enable interrupts
+		}
+		else { //if password is incorrect
+			for(int i=0; i<4; ++i) { //total of four blinks
+				PORTB|=(1<<PB7); //light PB7 without interfering with the rest leds for 0.5s
+ 5a0:	88 b3       	in	r24, 0x18	; 24
+ 5a2:	80 68       	ori	r24, 0x80	; 128
+ 5a4:	88 bb       	out	0x18, r24	; 24
+				for(int i=0; i<24; ++i) { //we need to keep scanning the keypad. Each scan takes longer than 19ms (19ms is the total delay time from delay routines)
+ 5a6:	c0 e0       	ldi	r28, 0x00	; 0
+ 5a8:	d0 e0       	ldi	r29, 0x00	; 0
+ 5aa:	03 c0       	rjmp	.+6      	; 0x5b2 <main+0xda>
+					scan_keypad_rising_edge_sim(); //so we call it 24 times for a total of ~0.5secs
+ 5ac:	0e 94 3e 00 	call	0x7c	; 0x7c <scan_keypad_rising_edge_sim>
+			//sei(); //re-enable interrupts
+		}
+		else { //if password is incorrect
+			for(int i=0; i<4; ++i) { //total of four blinks
+				PORTB|=(1<<PB7); //light PB7 without interfering with the rest leds for 0.5s
+				for(int i=0; i<24; ++i) { //we need to keep scanning the keypad. Each scan takes longer than 19ms (19ms is the total delay time from delay routines)
+ 5b0:	21 96       	adiw	r28, 0x01	; 1
+ 5b2:	c8 31       	cpi	r28, 0x18	; 24
+ 5b4:	d1 05       	cpc	r29, r1
+ 5b6:	d4 f3       	brlt	.-12     	; 0x5ac <main+0xd4>
+					scan_keypad_rising_edge_sim(); //so we call it 24 times for a total of ~0.5secs
+				}
+				PORTB&=~(1<<PB7); //turn off PB7 without interfering with the rest leds for 0.5s
+ 5b8:	88 b3       	in	r24, 0x18	; 24
+ 5ba:	8f 77       	andi	r24, 0x7F	; 127
+ 5bc:	88 bb       	out	0x18, r24	; 24
+				for(int i=0; i<24; ++i) {
+ 5be:	c0 e0       	ldi	r28, 0x00	; 0
+ 5c0:	d0 e0       	ldi	r29, 0x00	; 0
+ 5c2:	03 c0       	rjmp	.+6      	; 0x5ca <main+0xf2>
+					scan_keypad_rising_edge_sim();
+ 5c4:	0e 94 3e 00 	call	0x7c	; 0x7c <scan_keypad_rising_edge_sim>
+				PORTB|=(1<<PB7); //light PB7 without interfering with the rest leds for 0.5s
+				for(int i=0; i<24; ++i) { //we need to keep scanning the keypad. Each scan takes longer than 19ms (19ms is the total delay time from delay routines)
+					scan_keypad_rising_edge_sim(); //so we call it 24 times for a total of ~0.5secs
+				}
+				PORTB&=~(1<<PB7); //turn off PB7 without interfering with the rest leds for 0.5s
+				for(int i=0; i<24; ++i) {
+ 5c8:	21 96       	adiw	r28, 0x01	; 1
+ 5ca:	c8 31       	cpi	r28, 0x18	; 24
+ 5cc:	d1 05       	cpc	r29, r1
+ 5ce:	d4 f3       	brlt	.-12     	; 0x5c4 <main+0xec>
+			PORTB=led_state; //PB7 off
+			special_team=0;
+			//sei(); //re-enable interrupts
+		}
+		else { //if password is incorrect
+			for(int i=0; i<4; ++i) { //total of four blinks
+ 5d0:	0f 5f       	subi	r16, 0xFF	; 255
+ 5d2:	1f 4f       	sbci	r17, 0xFF	; 255
+ 5d4:	05 c0       	rjmp	.+10     	; 0x5e0 <main+0x108>
+ 5d6:	00 e0       	ldi	r16, 0x00	; 0
+ 5d8:	10 e0       	ldi	r17, 0x00	; 0
+ 5da:	02 c0       	rjmp	.+4      	; 0x5e0 <main+0x108>
+ 5dc:	00 e0       	ldi	r16, 0x00	; 0
+ 5de:	10 e0       	ldi	r17, 0x00	; 0
+ 5e0:	04 30       	cpi	r16, 0x04	; 4
+ 5e2:	11 05       	cpc	r17, r1
+ 5e4:	ec f2       	brlt	.-70     	; 0x5a0 <main+0xc8>
+ 5e6:	9a cf       	rjmp	.-204    	; 0x51c <main+0x44>
+
+000005e8 <_exit>:
+ 5e8:	f8 94       	cli
+
+000005ea <__stop_program>:
+ 5ea:	ff cf       	rjmp	.-2      	; 0x5ea <__stop_program>

@@ -1,0 +1,81 @@
+LXI B,01F4H ;500 dekadiko * 1ms = 0.5s
+MVI D,01H ; To vagoni arxika sthn aristerh thesi
+MVI E,00H ; Flag gia 
+
+MOV A,D ;Ektypwsh arxikhs theshs vagoniou 
+CMA
+OUT 30H
+CMA
+CALL DELB
+
+LEFT: IN 20H ;An to LSB einai 1 kane to flag 0 prin synexiseis
+RAR ; wste na allaxeis kateuthynsh mono otan tha ginei off.
+JC CHANGEFLAGLEFT
+RETURNLEFT: IN 20H ; An to MSB einai off stamata to vagoni mexri
+RAL ; na xanaginei on
+JNC RETURNLEFT
+MOV A,D 
+CPI 80H ; An to vagoni exei ftasei sthn akrh perimene allo miso
+JZ DELAYLEFT ; sec kai ystera steilto pros ta dexia
+IN 20H ; An to LSB einai off elegxe an prin htan on kai an nai
+RAR ; allaxe kateuthynsh sto vagoni
+JNC CHECKLEFT
+CONTLEFT: MOV A,D ; Alliws vale th thesi tou vagoniou ston A
+RLC ; kai metakinhse to aristera
+CMA
+OUT 30H
+CMA
+MOV D,A
+CALL DELB ; to vagoni menei gia 0.5s
+JMP LEFT
+
+RIGHT: IN 20H ; Symmetrika me LEFT
+RAR
+JC CHANGEFLAGRIGHT
+RETURNRIGHT: IN 20H
+RAL
+JNC RETURNRIGHT
+MOV A,D
+CPI 01H
+JZ DELAYRIGHT
+IN 20H
+RAR
+JNC CHECKRIGHT
+CONTRIGHT: MOV A,D
+RRC
+CMA
+OUT 30H
+CMA
+MOV D,A
+CALL DELB
+JMP RIGHT
+
+CHECKLEFT: MOV H,A ; Proswrinh apothikeush theshs vagoniou
+MOV A,E ; An to flag den einai 0 den allazei h kateuthynsh
+CPI 00H
+MOV A,H
+JNZ CONTLEFT
+MVI E,01H ; Alliws to flag ginetai 1 kai allazei h kateuthynsh
+JMP RIGHT
+
+CHECKRIGHT: MOV H,A ; Omoia me CKECKLEFT
+MOV A,E
+CPI 00H
+MOV A,H
+JNZ CONTRIGHT
+MVI E,01H
+JMP LEFT
+
+CHANGEFLAGLEFT: MVI E,00H ; Enhmerwsh tou flag se 0 afou o LSB
+JMP RETURNLEFT ; diakopths epanaferthike sto 1
+
+CHANGEFLAGRIGHT: MVI E,00H ; Omoia me CHANGEFLAGLEFT
+JMP RETURNRIGHT
+
+DELAYLEFT: CALL DELB
+JMP RIGHT
+
+DELAYRIGHT: CALL DELB
+JMP LEFT
+
+END
